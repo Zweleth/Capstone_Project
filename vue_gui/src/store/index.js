@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-const URL = 'https://luxus.onrender.com';
+const URL = 'https://luxus.onrender.com/';
 
 export default createStore({
   state: {
