@@ -4,6 +4,8 @@ import route from './controller/index.js'
 import pkg from 'cors'
 const cors = pkg
 import errorHandling from './middleware/ErrorHandling.js'
+const port = parseInt(process.env.PORT) || 6000;
+
 // const errorHandling = errorHandlingModule
 import cookieParser from 'cookie-parser'
 
@@ -30,8 +32,8 @@ app.use(
 )
 
 // Server is running
-app.listen(5000, () => {
-    console.log(`Server is running`)
+app.listen(port, () => {
+    console.log(`Server is running on ${port}`)
 });
 // Handling all errors
 app.use(errorHandling);
