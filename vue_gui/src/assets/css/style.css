@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+:root {
+    --tone-one: #EDE0D4;
+    --tone-two: #E6CCB2;
+    --tone-three: #DDB892;
+    --tone-four: #B08968;
+    --tone-five: #9C6644;
+    --tone-six: #7F5539;
+}
+
+*:not(i),
+::before:not(i),
+::after:not(i) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
