@@ -29,7 +29,7 @@ export default {
         top: 0;
         width: 100vw;
         background: none;
-        z-index: +1;
+        z-index: +5;
     }
     
     .navbar-brand {
