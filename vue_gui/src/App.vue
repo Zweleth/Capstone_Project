@@ -1,14 +1,17 @@
 <template>
   <navbar></navbar>
+ 
   <router-view/>
 </template>
 <script>
 // @ is an alias to /src
 import navbar from '@/components/Navbar.vue'
+import accountLink from '@/components/AccountLink.vue'
 
 export default {
   components: {
-    navbar
+    navbar,
+    accountLink
   }
 }
 </script>

@@ -44,27 +44,32 @@ export default createStore({
     setLoggedUser(state, loggedUser) {
       state.loggedUser = loggedUser;
     },
-    setMessage(state, value) {
-      state.message = value;
+    setMessage(state, message) {
+      state.message = message;
     }
 
   },
   actions: {
     async signIn(context, payload) {
       let res = await axios.post(`${URL}login`, payload);
+      
       let {result, msg, err} = await res.data;
+      
       if(result) {
-        context.commit('setUser', result);
+        // console.log('statement reached 1');
+        context.commit('setLoggedUser', result);    
         context.commit('setMessage', msg);
+        // console.log(result.first_name);
       }else {
         context.commit('setMessage', err);
+        console.log(err);
       }
     },
 
     async signUp(context, payload) {
       let res = await axios.post(`${URL}register`, payload);
       let {result, msg, err} = await res.data;
-      if(result) {
+      if(result){
         context.commit('setUser', result);
         context.commit('setMessage', msg);
       }else {
@@ -113,8 +118,8 @@ export default createStore({
     },
 
     // edit/update client
-    async updateUser(context, payload){
-      let res = await axios.put(`${URL}user/${payload.user_id}`, payload);
+    async updateUser(context, id, payload){
+      let res = await axios.put(`${URL}user/${id}`, payload);
       let {msg, err} = await res.data;
       msg ? context.commit('setMessage', msg) : context.commit('setMessage', err);
     },

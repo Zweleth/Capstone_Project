@@ -1,41 +1,41 @@
 <template lang="">
     <div class="signup">
         <div class="left">
-            <div class="form">
-                <form>
+            <div class="form" >
+                <form @submit.prevent="signUp()">
                     <div class="initials">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingText" placeholder="name@example.com" required> 
+                            <input type="text" class="form-control" id="floatingText" placeholder="name@example.com" required v-model="first_name"> 
                             <label for="floatingText">First name</label>
                         </div>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingText" placeholder="name@example.com" required>
+                            <input type="text" class="form-control" id="floatingText" placeholder="name@example.com" required v-model="last_name">
                             <label for="floatingText">Last name</label>
                         </div>
                     </div>
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required v-model="email">
                         <label for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required v-model="password">
                         <label for="floatingPassword">Password</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                        <label for="floatingPassword">Re-password</label>
+                        <input type="text" class="form-control" id="floatingText" placeholder="Password" required  v-model="phone_number">
+                        <label for="floatingText">Phone number</label>
                     </div>
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Male" required>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Male" required v-model="gender">
                         <label for="floatingPassword">Gender</label>
                     </div>
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingText" placeholder="url" required>
+                        <input type="text" class="form-control" id="floatingText" placeholder="url" required v-model="image_url">
                         <label for="floatingText">Image URL</label>
                     </div>
                     <div class="form-buttons">
                         <p>Already have an account? <a href="">Signup</a></p>
-                        <button>Sign up</button>
+                        <button type="submit">Sign up</button>
                     </div>
                 </form>
             </div>
@@ -50,7 +50,47 @@
     
 </template>
 <script>
+import {mapActions} from 'vuex';
 export default {
+    data(){
+        return {
+            payload: {
+                first_name: '',
+                last_name: '',
+                gender: '',
+                phone_number: '',
+                email: '',
+                password: '',
+                image_url: '',
+                
+            }
+        };
+    },
+    computed: {
+        message () {
+            return this.$store.state.message
+        }
+    },
+    created() {
+        // this.fetchUsers();
+    },
+    methods: {
+        ...mapActions(['fetchUsers']),
+        signUp() {
+            this.payload = {
+                first_name: this.first_name,
+                last_name: this.last_name,
+                gender: this.gender,
+                phone_number: this.phone_number,
+                email: this.email,
+                password: this.password,
+                image_url: this.image_url
+            };
+            this.$store.dispatch('signUp', this.payload);
+            console.log(this.$store.state.user);
+            console.log(this.message);
+        }
+    }
     
 }
 </script>
@@ -69,7 +109,7 @@ export default {
     .left {
         width: 50vw;
         height: 100vh;
-        background-color: var(--tone-one);
+        background-color: var(--tone-three);
         display: grid;
         place-items: center;
     }
@@ -77,23 +117,23 @@ export default {
     .right {
         width: 50vw;
         height: 100vh;
-        background-color: var(--tone-three);
+        background-color: var(--tone-one);
         display: grid;
         place-items: center;
     }
 
     .text {
         margin: 0 4rem 0 4rem;
-        color: var(--tone-one);
+        color: var(--tone-four);
     }
     .form {
         margin: 0 4rem 0 4rem;
         width: 28rem;
         height: 35rem;
         padding: 0.6rem;
-        background-color: var(--tone-three);
+        background-color: var(--tone-one);
         border-radius: 1rem;
-        color: var(--tone-one)
+        color: var(--tone-four)
     }
 
     .user-icon {
@@ -110,7 +150,7 @@ export default {
         background: none;
         border: none;
         border-radius: 0;
-        border-bottom: 0.15rem solid var(--tone-one);
+        border-bottom: 0.15rem solid var(--tone-four);
         outline: none;
         box-shadow: none;
     }
@@ -128,8 +168,8 @@ export default {
         height: 2.2rem;
         width: 5.5rem;
         border:none;
-        border: 0.14rem solid var(--tone-one);
+        border: 0.14rem solid var(--tone-four);
         border-radius: 0.3rem;
-        color: var(--tone-one);
+        color: var(--tone-four);
     }
 </style>

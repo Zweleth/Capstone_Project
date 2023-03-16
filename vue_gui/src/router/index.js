@@ -25,10 +25,10 @@ const routes = [
     }
   },
   {
-    path: '/checkout',
-    name: 'checkout',
+    path: '/cart',
+    name: 'cart',
     component: function () {
-      return import('../views/CheckoutView.vue')
+      return import('../views/CartView.vue')
     }
   },
   {
@@ -43,6 +43,14 @@ const routes = [
     name: 'signup',
     component: function () {
       return import('../views/SignupView.vue')
+    }
+  }
+  ,
+  {
+    path: '/myaccount',
+    name: 'myaccount',
+    component: function () {
+      return import('../views/MyAccountView.vue')
     }
   }
 ]
